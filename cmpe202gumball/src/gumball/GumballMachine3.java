@@ -1,10 +1,9 @@
 package gumball;
 
-public class GumballMachine3 implements MachineStrategy {
-    private int totalMoney;
+public class GumballMachine3 extends MachineStrategy {
 
     @Override
-    public void money(int coin) {
+    public boolean money(int coin) {
         if (coin == 5)
             totalMoney += coin;
         else if (coin == 10)
@@ -13,15 +12,10 @@ public class GumballMachine3 implements MachineStrategy {
             totalMoney += coin;
         else
             System.out.println("Coin entry not accepted");
+
+        if (totalMoney >= 50)
+            return true;
+        return false;
     }
 
-    @Override
-    public void removeEntry() {
-        totalMoney -= 50;
-    }
-
-    @Override
-    public boolean getAvailableMoney() {
-        return this.totalMoney >= 50 ? true : false;
-    }
 }

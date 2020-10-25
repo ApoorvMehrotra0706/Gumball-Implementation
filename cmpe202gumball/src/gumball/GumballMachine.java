@@ -14,22 +14,22 @@ public class GumballMachine {
     }
 
     public void checkinMoney(int coin) {
-        strategy.money(coin);
+        this.has_required_money = strategy.money(coin);
     }
 
     public void turnCrank() {
-        this.has_required_money = strategy.getAvailableMoney();
         if (this.has_required_money) {
             if (this.num_gumballs > 0) {
                 this.num_gumballs--;
                 this.has_required_money = false;
-                System.out.println("Thanks for your money.  Gumball Ejected!");
-                this.strategy.removeEntry();
+                strategy.removeEntry();
+                System.out.println("Thanks for your quarter.  Gumball Ejected!");
             } else {
-                System.out.println("No More Gumballs!  Sorry, can't return your money.");
+                System.out.println("No More Gumballs!  Sorry, can't return your quarter.");
+                strategy.removeEntry();
             }
         } else {
-            System.out.println("Please insert a coin");
+            System.out.println("Please insert the coin");
         }
     }
 
